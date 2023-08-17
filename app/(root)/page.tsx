@@ -1,15 +1,25 @@
-import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
+"use client"
+
+import { Modal } from "@/components/ui/modal";
+import { useStoreModal } from "@/hooks/use-store-modal";
+import { useEffect } from "react";
+
 
 
 export default function SetupPage() {
+  const onOpen = useStoreModal((state) => state.onOpen)
+  const isOpen = useStoreModal((state) => state.isOpen)
+
+  useEffect(() => {
+    if(!isOpen) {
+      onOpen()
+    }
+
+  }, [isOpen, onOpen])
   return (
     <div className="flex flex-col items-center justify-center h-full gap-4">
-      <div className="text-center text-red-950">
-        <p className="py-4 uppercase">Admin dashboard</p>
-        <p>This is protected rout</p>
-      </div>
-      <UserButton afterSignOutUrl="/" />
+      Root Page
+     
     </div>
   )
 }
