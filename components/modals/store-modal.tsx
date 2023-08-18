@@ -12,7 +12,7 @@ import { Modal } from "@/components/ui/modal"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { error } from "console"
+
 
 
 
@@ -36,7 +36,8 @@ export const StoreModal = () => {
             setLoading(true)
 
             const response = await axios.post('/api/stores', values)
-            toast.success("Store created.")
+            
+            window.location.assign(`/${response.data.id}`)
         } catch (error) {
             toast.error("Something went wrong.")
         } finally {
